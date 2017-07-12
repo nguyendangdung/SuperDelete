@@ -11,9 +11,18 @@ namespace SuperDelete
     {
         public static void DeleteDir(string dir)
         {
-            MessageBox.Show("Deleted");
-            return;
-
+            try
+            {
+                var deleteFilesCmd = $"/C del /f /s /q {dir} > nil";
+                var deleteFoldersCmd = $"/C rmdir /s /q {dir}";
+                System.Diagnostics.Process.Start("CMD.exe", deleteFilesCmd);
+                System.Diagnostics.Process.Start("CMD.exe", deleteFoldersCmd);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, @"Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+            }
+            
         }
     }
 }

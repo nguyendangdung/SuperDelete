@@ -40,6 +40,7 @@
             this.dirTxt.Name = "dirTxt";
             this.dirTxt.Size = new System.Drawing.Size(260, 20);
             this.dirTxt.TabIndex = 0;
+            this.dirTxt.TextChanged += new System.EventHandler(this.dirTxt_TextChanged);
             // 
             // deleteBtn
             // 

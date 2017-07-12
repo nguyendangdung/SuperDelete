@@ -13,8 +13,7 @@ namespace SuperDelete
 {
     public partial class Form1 : Form
     {
-        private string _deleteFilesCmd = "del /f /s /q {0} > nil";
-        private string _deleteFoldersCmd = "rmdir /s /q foldername";
+        
         private string _dir;
         public Form1()
         {
@@ -48,6 +47,14 @@ namespace SuperDelete
                     _dir = dir;
                     dirTxt.Text = _dir;
                 }
+            }
+        }
+
+        private void dirTxt_TextChanged(object sender, EventArgs e)
+        {
+            if (Directory.Exists(dirTxt.Text))
+            {
+                _dir = dirTxt.Text;
             }
         }
     }
