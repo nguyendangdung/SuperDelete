@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,22 +12,13 @@ namespace SuperDelete
 {
     public static class DeleteHelper
     {
+        private static readonly string File = Path.Combine(Directory.GetCurrentDirectory(), "fastdel.bat");
         public static void DeleteDir(string dir)
         {
-            try
-            {
-                var deleteFilesCmd = $"/C del /f /s /q {dir} > nil";
-                var deleteFoldersCmd = $"/C rmdir /s /q {dir}";
-                Interaction.Shell(deleteFilesCmd, AppWinStyle.Hide);
-                Interaction.Shell(deleteFoldersCmd, AppWinStyle.Hide);
-                //System.Diagnostics.Process.Start("CMD.exe", deleteFilesCmd);
-                //System.Diagnostics.Process.Start("CMD.exe", deleteFoldersCmd);
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message, @"Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
-            }
-            
+            Directory.SetCurrentDirectory(dir);
+            var process = Process.Start(File);
+            process?.Close();
+            MessageBox.Show("123");
         }
     }
 }
