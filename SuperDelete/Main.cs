@@ -11,11 +11,11 @@ using System.Windows.Forms;
 
 namespace SuperDelete
 {
-    public partial class Form1 : Form
+    public partial class Main : Form
     {
         
         private string _dir;
-        public Form1()
+        public Main()
         {
             InitializeComponent();
             if (Directory.Exists(_dir))
